@@ -1,0 +1,49 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+</head>
+
+<body>
+
+  <input type="number" />
+
+  <input type="text" class="senderEmail" />
+  <input type="text" class="targetEmail" />
+
+  <input type="button" class="sendEmail" />
+
+  <script src="js/interpreter.js"></script>
+
+  <script>
+
+    var senderEmail = document.querySelector('.senderEmail'),
+        receiverEmail: document.querySelector('.receiverEmail');
+
+    var vql = new Vql('./script.vql', {
+      senderEmail,
+      receiverEmail
+    });
+
+    senderEmail.addEventListener('input', () => {
+      console.log('senderEmail', vql.run('checkSenderEmail'));
+    });
+
+    targetEmail.addEventListener('input', () => {
+      console.log('targetEmail', vql.run('checkReceiverEmail'));
+    });
+
+    sendEmail.addEventListener('click', () => {
+      console.log('sendEmail', vql.run('checkForm'));
+    });
+
+  </script>
+</body>
+</html>

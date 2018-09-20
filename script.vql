@@ -1,0 +1,34 @@
+field powerField;
+field engineWeightField;
+field senderEmailField;
+field targetEmailField;
+
+rule isInServiceRange = [
+  entity <1, 9999>
+];
+
+rule isCorrectText = [
+  entity pass /[a-zA-Z\]+/
+];
+
+rule isCorrectEmail:isCorrectText = [
+  entity pass /^[a-z\]+*\@[a-z\]+\.[a-z\]{2,10}$/
+];
+
+validator checkPower = [
+  powerField isInServiceRange
+];
+
+validator checkSenderEmail = [
+  emailField isCorrectEmail
+];
+
+validator checkTargetEmail = [
+  emailField isCorrectEmail
+];
+
+validator checkForm = [
+  checkPower,
+  checkSenderEmail,
+  checkTargetEmail
+];
