@@ -1,0 +1,7 @@
+<1, entity, 9999>
+entity = 5
+entity / 5 = 5
+entity + 2 = 2
+entity contains "Lorem"
+entity pass /^[a-z\]+*\@[a-z\]+\.[a-z\]{2,10}$/
+entity pass /[a-zA-Z\]+/
