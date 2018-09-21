@@ -20,12 +20,12 @@
 
   <input type="button" class="sendEmail" />
 
-  <script src="js/interpreter.js"></script>
+  <script src="dist/main.js"></script>
 
   <script>
 
     var senderEmail = document.querySelector('.senderEmail'),
-        receiverEmail: document.querySelector('.receiverEmail');
+        receiverEmail = document.querySelector('.receiverEmail');
 
     var vql = new Vql('./script.vql', {
       senderEmail,

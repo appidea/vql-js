@@ -4,31 +4,36 @@ field senderEmailField;
 field targetEmailField;
 
 rule isInServiceRange = [
-  entity <1, 9999>
+  value in <1, 9999>
 ];
 
 rule isCorrectText = [
-  entity pass /[a-zA-Z\]+/
+  value match /[a-zA-Z\]+/
 ];
 
-rule isCorrectEmail:isCorrectText = [
-  entity pass /^[a-z\]+*\@[a-z\]+\.[a-z\]{2,10}$/
+rule isCorrectNumber = [
+  value match /\d+/
+];
+
+rule isCorrectEmail = [
+  value pass isCorrectText
+  value match /^[a-z\]+*\@[a-z\]+\.[a-z\]{2,10}$/
 ];
 
 validator checkPower = [
-  powerField isInServiceRange
+  testif powerField isInServiceRange
 ];
 
 validator checkSenderEmail = [
-  emailField isCorrectEmail
+  testif emailField isCorrectEmail
 ];
 
 validator checkTargetEmail = [
-  emailField isCorrectEmail
+  testif emailField isCorrectEmail
 ];
 
 validator checkForm = [
-  checkPower,
-  checkSenderEmail,
-  checkTargetEmail
+  run checkPower
+  run checkSenderEmail
+  run checkTargetEmail
 ];
